@@ -1,5 +1,11 @@
 # transcendence
 
+This repository for the Transcendence project, a web-based multiplayer Pong game. The project is designed to be modular and extensible, allowing for various features and enhancements to be added over time.
+
+You can find the demo of the project at [Transcendence Demo](https://servettonga.github.io/transcendence_demo/#/) without a working backend.
+
+The complete project consists of the following modules:
+
 ## Completed Modules
 
 ### Web
@@ -52,4 +58,3 @@ Total number of modules:
 
 - Major modules: 9
 - Minor modules: 9
-- Total modules: 13.5
