@@ -1,0 +1,146 @@
+.friends-list, .friend-requests-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.friend-item, .request-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: background-color 0.2s;
+}
+
+.friend-item:hover, .request-item:hover {
+    background-color: rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+
+.friend-avatar, .request-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.friend-info, .request-info {
+    flex-grow: 1;
+}
+
+.friend-name, .request-name {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.new-request-highlight {
+    animation: highlight-new 1.5s ease-in-out;
+}
+
+@keyframes highlight-new {
+    0% { background-color: rgba(13, 110, 253, 0.2); }
+    100% { background-color: transparent; }
+}
+
+.friend-status {
+    font-size: 0.8rem;
+}
+
+.avatar-lg {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.request-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Status colors */
+.status-online {
+    color: #198754;
+}
+
+.status-offline {
+    color: #6c757d;
+}
+
+.status-in_game {
+    color: #fd7e14;
+}
+
+.status-away {
+    color: #dc3545;
+}
+
+/* Tab styling improvements */
+.nav-tabs .nav-item {
+    margin-right: 8px;
+}
+
+.nav-tabs .nav-link {
+    padding: 10px 20px;
+    border-radius: 4px 4px 0 0;
+    font-weight: 500;
+    transition: all 0.2s ease; /* Smooth transitions */
+}
+
+.nav-tabs .nav-link.active {
+    border-bottom: 1px solid #fff; /* Hide bottom border when active */
+    font-weight: bold;
+    background-color: #fff;
+    position: relative; /* For positioning the active indicator */
+    top: 1px;
+}
+
+.nav-tabs .nav-link:hover:not(.active) {
+    background-color: rgba(13, 110, 253, 0.05); /* Light hover effect */
+    border-color: #e9ecef #e9ecef #dee2e6; /* Lighter border on hover */
+}
+
+/* Card styling to match the tabs */
+.card-header {
+    padding-bottom: 0;
+}
+
+.card-body {
+    border-top: 1px solid #dee2e6;
+}
+
+/* User Profile Modal styling */
+#userProfileModal .modal-footer {
+    border-top: 1px solid #dee2e6;
+    padding: 1rem;
+}
+
+#userProfileModal .modal-footer .btn {
+    padding: 0.5rem 1rem;
+    min-width: 120px;
+}
+
+#userProfileModal .right-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 576px) {
+    #userProfileModal .modal-footer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    #userProfileModal .left-actions,
+    #userProfileModal .right-actions {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #userProfileModal .btn {
+        min-width: auto;
+        flex: 1;
+    }
+}

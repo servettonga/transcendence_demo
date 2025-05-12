@@ -1,0 +1,401 @@
+:root {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url('../fonts/FiraCode-VF.woff') format('woff-variations'),
+    url('../fonts/FiraCode-VF.ttf') format('truetype-variations');
+    font-variation-settings: 'wght' var(--fira-weight, 400);
+}
+
+:root, [data-bs-theme=light] {
+    --bs-body-font-family: 'Fira Code', monospace;
+    --fira-weight: 500;
+    --bs-body-font-weight: var(--fira-weight);
+    --bs-heading-font-weight: var(--fira-weight);
+    --bs-btn-font-weight: var(--fira-weight);
+    --bs-nav-link-font-weight: var(--fira-weight);
+}
+
+body {
+    font-family: var(--bs-body-font-family);
+    font-variation-settings: 'wght' var(--fira-weight);
+}
+
+.fw-light,
+.fw-normal,
+.fw-medium,
+.fw-semibold,
+.fw-bold {
+    font-variation-settings: 'wght' var(--fira-weight) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.btn,
+.nav-link,
+.dropdown-item {
+    font-variation-settings: 'wght' var(--fira-weight) !important;
+}
+
+.btn {
+    border-radius: 0.2rem !important;
+}
+
+/* Navbar styles */
+.navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    padding: 0.5rem 0;
+}
+
+/* Active link styles */
+.nav-link.active {
+    color: var(--bs-primary) !important;
+    position: relative;
+}
+
+/* Underline effect for active link */
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--bs-primary);
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+}
+
+.nav-link {
+    font-variation-settings: inherit !important;
+}
+
+/* Chat styles */
+
+/* General container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 800px;
+    background: white;
+}
+
+/* Chat box */
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Message container */
+.media {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
+/* Self messages */
+.media.self-message {
+    margin-left: auto;
+    flex-direction: row-reverse;
+    text-align: end;
+}
+
+/* Avatar container */
+.avatar-container {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+}
+
+/* Avatar image */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Message content */
+.media-body {
+    flex: 1;
+    min-width: 0;
+    word-break: break-word; /* Break long words */
+}
+
+/* Message bubble */
+.message-bubble {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 0.9rem;
+    text-align: left;
+    font-variation-settings: 'wght' 400 !important;
+}
+
+/* Self message bubble */
+.self-message .message-bubble {
+    background-color: #659bb8;
+    color: white;
+}
+
+/* Timestamp */
+.timestamp {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+/* Self message timestamp */
+.self-message .timestamp {
+    text-align: right;
+}
+
+/* Responsive chat adjustments */
+@media (max-width: 768px) {
+    .chat-container {
+        height: auto;
+    }
+
+    .media {
+        max-width: 90%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-height: 1080px) {
+    .chat-container {
+        height: 800px;
+    }
+}
+
+@media (max-height: 768px) {
+    .chat-container {
+        height: 600px;
+    }
+}
+
+/* Chat user modal styles */
+#chatUserModal .avatar-lg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 3px solid rgba(0,0,0,0.1);
+}
+
+#chatUserModal .modal-footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+#chatUserModal .modal-footer .btn {
+    min-width: 110px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    #chatUserModal .modal-footer .btn {
+        flex: 1 0 calc(50% - 8px);
+        padding: 0.5rem 0.25rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* In-game interface */
+.game-over-screen {
+    position: relative;
+    z-index: 1000;
+}
+
+.modal-center{
+    align-items: center;
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 20px 20px 0 20px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 0 20px 20px 20px;
+}
+
+#winnerMessage {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #198754;
+    margin-bottom: 20px;
+}
+
+#finalScore1, #finalScore2 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.badge {
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+.badge.bg-success {
+    background-color: #198754;
+    color: white;
+}
+
+/* Game pause overlay */
+#pauseOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+#pauseOverlay h2 {
+    margin: 0;
+    color: #fff;
+}
+
+#pauseOverlay p {
+    margin: 10px 0 0;
+    color: #ccc;
+}
+
+/* Responsive game board styling */
+#gameBoard {
+    max-width: 100%;
+    height: auto !important;
+    aspect-ratio: 5/3;
+}
+
+/* Screen-specific adjustments */
+#touchControls {
+    display: none !important; /* Hidden by default on all screens */
+}
+
+/* Base responsive adjustments */
+@media (max-width: 768px) {
+    /* Touch controls for mobile */
+    .touch-control {
+        display: inline-block;
+        width: 45%;
+        height: 100px;
+        background-color: rgba(2,117,90,0.7);
+        border-radius: 10px;
+        margin: 0 2.5% 20px 2.5%;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        font-size: 36px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(2,117,90,0.3);
+    }
+
+    /* Active state for touch feedback */
+    .touch-control:active {
+        background-color: rgba(2,117,90,0.9);
+        transform: translateY(2px);
+    }
+
+    /* Touch control container */
+    #touchControls {
+        display: flex !important;
+        justify-content: space-around;
+        padding: 20px 10px;
+        margin-top: 15px;
+    }
+
+    /* Spacing between rows when they stack */
+    .row + .row {
+        margin-top: 20px;
+    }
+
+    /* Better image sizing for small screens */
+    .img-fluid.w-100.fit-cover {
+        min-height: 200px !important; /* Lower height on mobile */
+        max-height: 250px;
+        object-fit: contain !important; /* Show full image */
+    }
+
+    /* Better spacing for text sections */
+    .col-md-6.text-center.text-md-start {
+        padding: 20px 15px;
+    }
+
+    /* Alignment for text */
+    .text-md-start {
+        text-align: center !important;
+    }
+
+    /* Improve container spacing */
+    .container.py-4.py-xl-5 {
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
+
+    /* Alignment of player stats in pong game */
+    .d-flex.justify-content-sm-around {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 1400px) {
+    .justify-content-sm-around {
+        justify-content: space-evenly !important;
+    }
+}
+
+.input-group-text {
+    border: none;
+}

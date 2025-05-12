@@ -1,0 +1,45 @@
+<section class="py-5 mt-5 pt-0 pb-0">
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-2 gy-md-0">
+            <div class="col-4">
+                <div><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="assets/img/illustrations/pong.jpg" width="476" height="476"></div>
+            </div>
+            <div class="col text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+                <div style="max-width: 350px;">
+                    <h1 class="display-6 fw-bold mb-4" data-i18n="tournaments_title">Tournaments</h1>
+                    <button class="btn btn-primary border rounded-0 me-2" data-bs-target="#tournament_create" data-bs-toggle="modal" data-i18n="new_tournament">New Tournament</button>
+                </div>
+            </div>
+        </div>
+        <h2 data-i18n="active_tournaments">Active Tournaments</h2>
+        <hr>
+        <div class="row gy-4 gy-md-0">
+            <div class="col">
+                <div id="tournaments_container"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CREATE TOURNAMENT MODAL  -->
+<div class="modal fade" role="dialog" tabindex="-1" id="tournament_create">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center pb-3 pt-3">
+                <h5 class="modal-title text-center" data-i18n="create_tournament_title">Create a new tournament</h5><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal" id="createTournamentModalClose"></button>
+            </div>
+        </div>
+        <div class="modal-content p-3">
+            <input type="text" class="form-control mb-2" data-i18n-attr="placeholder:tournament_name_placeholder" placeholder="Tournament name" id="tName">
+            <input type="text" class="form-control mb-2" data-i18n-attr="placeholder:description_placeholder" placeholder="Description" id="tDescription">
+            <label for="maxPlayers" data-i18n="select_players_count">Select number of players</label>
+            <select class="form-control mb-2" name="maxPlayers" id="tMaxPlayers">
+                <option value="4" data-i18n="players_4">4 Players</option>
+                <option value="8" data-i18n="players_8">8 Players</option>
+                <option value="16" data-i18n="players_16">16 Players</option>
+            </select>
+        </div>
+        <div class="modal-content text-center mx-auto">
+            <button class="btn btn-primary btn-sm" type="button" onclick="checkAndCreateTournament()" data-i18n="create_button">Create</button>        </div>
+    </div>
+</div>

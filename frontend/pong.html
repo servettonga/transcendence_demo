@@ -1,0 +1,111 @@
+<section class="py-5 mt-5 pt-0 pb-0">
+  <div class="container py-4 py-xl-5">
+    <br><br>
+    <center>
+      <button class="btn btn-lg btn-success" id="pongStartButton" data-i18n="start_game">Start</button>
+    </center>
+    <br>
+    <div class="container">
+      <div class="d-flex justify-content-sm-around align-items-center mb-2 p-3">
+        <!-- Player 1 -->
+        <div class="d-flex justify-content-start align-items-center" style="min-width: 200px">
+          <img id="avatar1" src="" alt="Player 1" class="rounded-circle me-2" width="50" height="50">
+          <span class="fw-bold" id="username1"></span>
+          <span class="m-2" id="ready1"></span>
+        </div>
+
+        <!-- Score 1 -->
+        <div class="d-flex align-items-center">
+          <h2 class="fw-bolder text-info m-0" id="score_left">0</h2>
+        </div>
+
+        <!-- Game ID -->
+        <div class="d-flex align-items-center">
+          <span class="fw-bold">ID #<span id="gameIdField"></span></span>
+        </div>
+
+        <!-- Score 2 -->
+        <div class="d-flex align-items-center">
+          <h2 class="fw-bolder text-info m-0" id="score_right">0</h2>
+        </div>
+
+        <!-- Player 2 -->
+        <div class="d-flex justify-content-end align-items-center" style="min-width: 200px">
+          <span class="m-2" id="ready2"></span>
+          <span class="fw-bold" id="username2"></span>
+          <img id="avatar2" src="" alt="Player 2" class="rounded-circle ms-2" width="50" height="50">
+        </div>
+
+        <!-- Game Over Modal -->
+        <div class="modal fade" id="gameOverModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="gameOverModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-center">
+              <div class="modal-header">
+                <h5 class="modal-title" id="gameOverModalLabel">Game Over!</h5>
+              </div>
+              <div class="modal-body text-center">
+                <p id="winnerMessage" class="h4 mb-3"></p>
+                <div class="final-score-container mb-3">
+                  <p class="mb-2">Final Score:</p>
+                  <p class="h3">
+                    <span id="player1Name"></span>: <span id="finalScore1"></span>
+                    <br>
+                    <span id="player2Name"></span>: <span id="finalScore2"></span>
+                  </p>
+                </div>
+              </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="returnButton"
+                  onclick="window.location.href='#/'">
+                  Return
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row gy-4 gy-md-0">
+      <div class="col d-xxl-flex justify-content-xxl-center" id="pongBoard">
+        <svg id="gameBoard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480"
+          class="img-fluid mx-auto d-block" style="max-width: 100%; height: auto;">
+          <!-- Adjust the rect dimensions to match the new viewBox -->
+          <rect id="bg" x="0" y="0" width="800" height="480" fill="#231f20" stroke="#f7941d" stroke-miterlimit="10"
+            stroke-width="2.83" />
+          <!-- Center the midline -->
+          <g id="midLine">
+            <g>
+              <line x1="400" y1="470" x2="400" y2="465" fill="none" stroke="#a7a9ac" stroke-miterlimit="10"
+                stroke-width="1.42" />
+              <line x1="400" y1="455" x2="400" y2="25" fill="none" stroke="#a7a9ac" stroke-dasharray="10 10"
+                stroke-miterlimit="10" stroke-width="1.42" />
+              <line x1="400" y1="15" x2="400" y2="10" fill="none" stroke="#a7a9ac" stroke-miterlimit="10"
+                stroke-width="1.42" />
+            </g>
+          </g>
+          <!-- Position paddles on edges -->
+          <rect id="paddleRight" class="paddle" x="785" y="180" width="10" height="100" fill="#c49a6c" />
+          <rect id="paddleLeft" class="paddle" x="5" y="180" width="10" height="100" fill="#c49a6c" />
+          <!-- Center the ball -->
+          <circle id="ball" cx="400" cy="240" r="8" fill="#f9ed32" />
+        </svg>
+        <div id="pauseOverlay" style="display: none;">
+            <h2 data-i18n="game_paused" id="gamePaused">Game Paused</h2>
+            <p id="pauseMessage" data-i18n="waiting_for_other_player">Waiting for other player to resume</p>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="touchControls">
+      <div class="touch-control" id="upButton">▲</div>
+      <div class="touch-control" id="downButton">▼</div>
+    </div>
+    <div class="row gy-4 gy-md-0">
+      <div class="col">
+        <div class="pt-4 text-center">
+          <span class="text-center text-info-emphasis" data-i18n="keys" id="keysInfo">Keys: W(up)/S(down) or&nbsp;↑/↓, Space(Pause/Resume)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

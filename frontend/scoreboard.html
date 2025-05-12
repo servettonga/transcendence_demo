@@ -1,0 +1,56 @@
+<section class="py-5 mt-5 pt-0 pb-0">
+    <div class="container py-4 py-xl-5">
+        <!-- Header row with image and title -->
+        <div class="row gy-2 gy-md-0">
+            <div class="col-4">
+                <div><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="assets/img/illustrations/scoreboard.jpg" width="476" height="476"></div>
+            </div>
+            <div class="col text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+                <div style="max-width: 350px;">
+                    <h1 class="display-6 fw-bold mb-4" data-i18n="scoreboard_title">Scoreboard</h1>
+                    <p class="my-4" data-i18n="scoreboard_description">Let the scoreboard do the talking</p>
+                    <button class="btn btn-primary border rounded-0 me-2" data-bs-target="#my_games" data-bs-toggle="modal" data-i18n="my_games_title">My Games</button>
+                    <button class="btn btn-light text-bg-secondary border rounded-0 border-1 border-primary" type="button" data-bs-target="#join_game" data-bs-toggle="modal" data-i18n="join_button">Join</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two-column layout for content -->
+        <div class="row gy-4 gy-md-0">
+            <!-- Left column: Scoreboard table -->
+            <div class="col-lg-7">
+                <div id="scoreboard-container" class="table-responsive scrollable-table-container" style="max-height: 1405px;">
+                    <!-- Table will be populated here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Right column: Charts -->
+            <div class="col-lg-5">
+                <!-- Top Players Chart -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="text-center mb-3" data-i18n="top_players_chart">Top Players by Wins</h4>
+                        <canvas id="topPlayersChart" height="250"></canvas>
+                    </div>
+                </div>
+
+                <!-- Score Distribution Chart -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="text-center mb-3" data-i18n="score_distribution_chart">Score Distribution</h4>
+                        <canvas id="scoreDistributionChart" height="250"></canvas>
+                    </div>
+                </div>
+
+                <!-- Game Duration Chart -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="text-center mb-3" data-i18n="game_duration_chart">Game Duration Distribution</h4>                        <canvas id="gameDurationChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/game/loadScoreboard.js"></script>

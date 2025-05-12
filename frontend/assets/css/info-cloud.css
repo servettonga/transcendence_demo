@@ -1,0 +1,59 @@
+#info {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1100;
+  }
+
+  .success {
+    background-color: #28a745;
+  }
+
+  .error {
+    background-color: #dc3545;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+a.disabled {
+    pointer-events: none;
+    color: gray;
+    text-decoration: none;
+    opacity: 0.6;
+  }
+
+.success-message {
+    color: green;
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+.modal-success-message {
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    background-color: green;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.modal-error-message {
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    background-color: red;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

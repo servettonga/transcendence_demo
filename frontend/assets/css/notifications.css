@@ -1,0 +1,156 @@
+#chat-notification-container {
+    max-width: 350px;
+}
+
+.toast {
+    width: 350px;
+    margin-bottom: 10px;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.toast-body {
+    padding: 0.75rem;
+}
+
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* System message styling */
+.system-message .message-bubble {
+    background-color: #f8f9fa !important;
+    font-style: italic;
+}
+
+.system-message-content {
+    max-width: 100%;
+}
+
+.system-bubble {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    background-color: #f0f8ff !important;
+}
+
+/* Chat sidebar styling */
+.list-group-item.list-group-item-action {
+    padding: 0.75rem 1rem;
+    border-radius: 0 !important;
+    border-left: none;
+    border-right: none;
+    transition: background-color 0.2s ease;
+}
+
+/* User list item container */
+.user-list-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* User avatar in list */
+.user-list-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* User info container */
+.user-list-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Username styling */
+.user-list-name {
+    font-weight: 600;
+    margin: 0;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Last message preview styling */
+.user-list-message {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 400;
+    margin-top: 3px;
+    font-style: italic;
+}
+
+/* Active user styling */
+.list-group-item.active .user-list-message {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Unread message indicator */
+.unread-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #f19451;
+    border-radius: 50%;
+    margin-left: 6px;
+    display: inline-block;
+}
+
+/* Time stamp styling */
+.user-list-time {
+    font-size: 0.7rem;
+    color: #adb5bd;
+    white-space: nowrap;
+    margin-left: 5px;
+}
+
+.list-group-item.active .user-list-time {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.list-group-item.new-message {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+.list-group-item.active {
+    background-color: var(--bs-primary) !important;
+}
+
+.game-invitation {
+    max-width: 350px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    animation: slide-in 0.3s ease-out;
+}
+
+.game-invitation .toast-header {
+    color: white;
+}
+
+@keyframes slide-in {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+#notification-container {
+    z-index: 1050;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}

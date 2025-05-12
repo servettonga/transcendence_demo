@@ -1,0 +1,60 @@
+<div class="container py-4 py-xl-5">
+    <div class="row">
+        <div class="col">
+            <section class="py-4 py-xl-5 mb-0 pt-0 mt-0 pb-5">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <div class="col text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
+                            <div>
+                                <h2 class="fs-3 fw-bold mb-3"><span id="p1Name">You</span> vs <span id="aiName">Mid</span></h2>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="slider-icon" data-value="0" data-pTime="300" data-move-time="500" data-name="Intern">😴</span>
+                                    <span class="slider-icon" data-value="25" data-pTime="200" data-move-time="450" data-name="Junior">😊</span>
+                                    <span class="slider-icon" data-value="50" data-pTime="75" data-move-time="400" data-name="Mid">😐</span>
+                                    <span class="slider-icon" data-value="75" data-pTime="50" data-move-time="300" data-name="Senior">😬</span>
+                                    <span class="slider-icon" data-value="100" data-name="No Mercy">🤖</span>
+                                </div>
+                                <label for="ai-slider">AI Difficulty: <span id="ai-value">50</span></label><br>
+                                <input type="range" id="ai-slider" min="0" max="100" value="50" step="1" class="form-range">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row gy-4 gy-md-0 align-items-center text-center">
+        <div class="col d-flex justify-content-center align-items-center">
+            <h2 class="fw-bolder text-info mb-0" id="score_left">0</h2>
+        </div>
+        <div class="col d-flex flex-column justify-content-center align-items-center">
+            <button class="btn btn-lg btn-success mb-2" id="startBtn">Start</button>
+            <button class="btn btn-lg btn-info mb-2" id="resetBtn" style="display: none;">Restart</button>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center">
+            <h2 class="fw-bolder text-info mb-0" id="score_right">0</h2>
+        </div>
+    </div>    
+    <div class="row gy-4 gy-md-0">
+        <div class="col d-xxl-flex justify-content-xxl-center" id="pongBoard">
+            <svg id="gameBoard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 602.83 362.83">
+                <rect id="bg" x="1.42" y="1.42" width="600" height="360" fill="#231f20" stroke="#f7941d" stroke-miterlimit="10" stroke-width="2.83"/>
+                <g id="midLine">
+                    <g>
+                        <line x1="301.42" y1="353.45" x2="301.42" y2="349.2" fill="none" stroke="#a7a9ac" stroke-miterlimit="10" stroke-width="1.42"/>
+                        <line x1="301.42" y1="340.59" x2="301.42" y2="17.72" fill="none" stroke="#a7a9ac" stroke-dasharray="8.61 8.61" stroke-miterlimit="10" stroke-width="1.42"/>
+                        <line x1="301.42" y1="13.41" x2="301.42" y2="9.16" fill="none" stroke="#a7a9ac" stroke-miterlimit="10" stroke-width="1.42"/>
+                    </g>
+                </g>
+                <rect id="paddleRight" class="paddle" x="589.84" y="142.08" width="7.32" height="78.67" fill="#c49a6c"/>
+                <rect id="paddleLeft" class="paddle" x="5.67" y="142.08" width="7.32" height="78.67" fill="#c49a6c"/>
+                <circle id="ball" cx="301.42" cy="181.42" r="6.71" fill="#f9ed32"/>
+            </svg>
+        </div>
+    </div>
+    <div class="row gy-4 gy-md-0">
+        <div class="col">
+            <div class="alert alert-light text-center" role="alert"><span class="text-center"><strong>Keys: W(up)/S(down) or&nbsp;↑/↓, Space(Pause/Resume)</strong></span></div>
+        </div>
+    </div>
+</div>

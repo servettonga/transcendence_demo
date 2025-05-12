@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="friends_title">Friends</title>
+    <link rel="stylesheet" href="assets/css/friends.css">
+</head>
+<body>
+<section class="py-4 py-xl-5 mt-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 class="display-6 fw-bold mb-4" data-i18n="friends_title">Friends</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Left Column: Friend Management -->
+            <div class="col-md-6 mb-4">
+                <!-- Combined Card for Friend Management -->
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Add a Friend section -->
+                        <h5 class="card-title" data-i18n="add_friend_title">Add a Friend</h5>
+                        <div class="input-group mb-3">
+                            <input type="text" id="friendUsername" class="form-control"
+                                   data-i18n-attr="placeholder:enter_username_placeholder" placeholder="Enter username">
+                            <button class="btn btn-primary" type="button" id="addFriendBtn" data-i18n="send_request_button">Send Request</button>
+
+                        </div>
+                        <div id="friendRequestResult" class="mb-4"></div>
+
+                        <hr class="mb-4">
+
+                        <!-- Friend Requests Tabs -->
+                        <h5 class="card-title" data-i18n="friend_requests">Friend Requests</h5>
+                        <ul class="nav nav-tabs mb-3" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="received-tab" data-bs-toggle="tab"
+                                        data-bs-target="#received" type="button" role="tab" data-i18n="received_tab">Received</button>                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="sent-tab" data-bs-toggle="tab"
+                                        data-bs-target="#sent" type="button" role="tab" data-i18n="sent_tab">Sent</button>                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="blocked-tab" data-bs-toggle="tab"
+                                        data-bs-target="#blocked" type="button" role="tab" data-i18n="blocked_tab">Blocked</button>                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="received" role="tabpanel">
+                                <div id="receivedRequests" class="friend-requests-list">
+                                    <!-- Received requests will be loaded here -->
+                                    <div class="text-center py-3 text-muted" id="noReceivedRequests" data-i18n="no_pending_requests">
+                                        You have no pending friend requests
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="sent" role="tabpanel">
+                                <div id="sentRequests" class="friend-requests-list">
+                                    <!-- Sent requests will be loaded here -->
+                                    <div class="text-center py-3 text-muted" id="noSentRequests" data-i18n="no_sent_requests">
+                                        You haven't sent any friend requests
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="blocked" role="tabpanel">
+                                <div id="blockedUsers" class="friend-requests-list">
+                                    <!-- Blocked users will be loaded here -->
+                                </div>
+                                <div id="noBlockedUsers" class="text-center py-3 text-muted" data-i18n="no_blocked_users">
+                                    You haven't blocked any users
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Friends List -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" data-i18n="friends_list">Friends List</h5>
+                        <div id="friendsList" class="friends-list">
+                            <!-- Friends will be loaded here -->
+                            <div class="text-center py-3 text-muted" id="noFriends" data-i18n="no_friends">
+                                You don't have any friends yet
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- User Profile Modal -->
+<div class="modal fade" id="userProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" data-i18n="user_profile">User Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-3">
+                    <img id="modalUserAvatar" src="" alt="User Avatar" class="rounded-circle avatar-lg">
+                    <h4 id="modalUserName" class="mt-2 mb-0"></h4>
+                    <p id="modalUserUsername" class="text-muted small mb-2">@username</p>
+                    <span id="modalUserStatus" class="badge bg-success" data-i18n="online_status">Online</span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-center mb-2">
+                        <div style="max-width: 200px; margin: 0 auto;">
+                            <canvas id="modalUserStatsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-sm btn-outline-danger me-2" id="modalRemoveFriend"
+                        data-i18n="remove_friend_button">Remove Friend</button>            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

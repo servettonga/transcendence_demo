@@ -1,0 +1,36 @@
+<section class="py-5 mt-5 pt-0 pb-0">
+    <div class="container py-4 py-xl-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mb-5" style="border-style: none;" style="max-width: 500px;">
+                    <div class="card-body text-center justify-content-center align-items-center p-sm-5">
+                        <img id="2facImg" class="img-fluid object-fit-contain w-50 mb-4 fit-cover rounded-circle" style="min-height: 180px;" src="" width="180" height="180">
+                        <h4 class="text-center mb-4"><span data-i18n="2fa_status">2 factor auth is</span>: <b id="2facState"></b></h4>
+                        <button class="btn btn-primary mt-2 w-100 d-none" onclick="enable2f()" id="2facEbableButton" data-i18n="enable_button">Enable</button><br>
+                        <div id="QRcodeDiv"></div>
+                        <span id="verify2fsection" class="d-none">
+                                <p data-i18n="scan_qr_code">scan QR code in authentication app</p>
+                            <label for="qrVerifyInput" data-i18n="enter_auth_code">enter code from authentication app</label>
+                            <input class="form-control" id="qrVerifyInput" type="text">
+                            <button class="btn btn-primary mt-2 w-100" onclick="verify2f()" data-i18n="verify_button">verify</button>
+                        </span>
+                    </div>
+                    <div class="card-body text-center justify-content-center align-items-center p-sm-5">
+                        <form method="PATCH" id="userUpdateForm" enctype="multipart/form-data" onsubmit="updateUserData(event)">
+                            <div class="form-floating">
+                                <select class="form-select" id="colorTheme" aria-label="Select a color theme">
+                                    <option value="0" selected data-i18n="default_theme">Default</option>
+                                    <option value="1" data-i18n="theme_1">Theme 1</option>
+                                    <option value="2" data-i18n="theme_2">Theme 2</option>
+                                </select>
+                                <label for="colorTheme" data-i18n="color_theme">Color Theme</label>
+                            </div>
+                            <div><button class="btn btn-primary mt-2 w-100" type="button" onclick="updateSettings(event)" data-i18n="update_button">Update</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

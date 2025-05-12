@@ -1,0 +1,97 @@
+<section class="py-5 mt-5 pt-0 pb-0">
+    <div class="container py-4 py-xl-5">
+        <br><br>
+        <center>
+            <button class="btn btn-lg btn-success" id="localGameStartButton" data-i18n="start_game">Start</button>
+            <button class="btn btn-lg btn-warning d-none" id="localGamePauseButton" data-i18n="pause_game">Pause</button>
+        </center>
+        <br>
+        <div class="container">
+            <div class="d-flex justify-content-sm-around align-items-center mb-2 p-3">
+                <!-- Score 1 -->
+                <div class="d-flex align-items-center">
+                    <h2 class="fw-bolder text-info m-0" id="score_left">0</h2>
+                </div>
+
+                <!-- Game Status -->
+                <div class="d-flex align-items-center">
+                    <span class="fw-bold" id="gameStatusLabel" data-i18n="local_1v1_game">Local 1v1 Game</span>
+                </div>
+
+                <!-- Score 2 -->
+                <div class="d-flex align-items-center">
+                    <h2 class="fw-bolder text-info m-0" id="score_right">0</h2>
+                </div>
+
+                <!-- Game Over Modal -->
+                <div class="modal fade" id="gameOverModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                     aria-labelledby="gameOverModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content modal-center">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="gameOverModalLabel" data-i18n="game_over">Game Over!</h5>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p id="winnerMessage" class="h4 mb-3"></p>
+                                <div class="final-score-container mb-3">
+                                    <p class="mb-2" data-i18n="final_score" id="finalScore">Final Score:</p>
+                                    <p class="h3">
+                                        <span id="player1Name" data-i18n="player_1">Player 1</span>: <span id="finalScore1">0</span>
+                                        <br>
+                                        <span id="player2Name" data-i18n="player_2">Player 2</span>: <span id="finalScore2">0</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="returnButton" data-i18n="return"
+                                        onclick="window.location.href='#/'">
+                                    Return
+                                </button>
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="playAgainButton" data-i18n="play_again">
+                                    Play Again
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4 gy-md-0">
+            <div class="col d-xxl-flex justify-content-xxl-center" id="pongBoard">
+                <svg id="gameBoard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480"
+                     class="img-fluid mx-auto d-block" style="max-width: 100%; height: auto;">
+                    <!-- Adjust the rect dimensions to match the new viewBox -->
+                    <rect id="bg" x="0" y="0" width="800" height="480" fill="#231f20" stroke="#f7941d" stroke-miterlimit="10"
+                          stroke-width="2.83" />
+                    <!-- Center the midline -->
+                    <g id="midLine">
+                        <g>
+                            <line x1="400" y1="470" x2="400" y2="465" fill="none" stroke="#a7a9ac" stroke-miterlimit="10"
+                                  stroke-width="1.42" />
+                            <line x1="400" y1="455" x2="400" y2="25" fill="none" stroke="#a7a9ac" stroke-dasharray="10 10"
+                                  stroke-miterlimit="10" stroke-width="1.42" />
+                            <line x1="400" y1="15" x2="400" y2="10" fill="none" stroke="#a7a9ac" stroke-miterlimit="10"
+                                  stroke-width="1.42" />
+                        </g>
+                    </g>
+                    <!-- Position paddles on edges -->
+                    <rect id="paddleRight" class="paddle" x="785" y="180" width="10" height="100" fill="#c49a6c" />
+                    <rect id="paddleLeft" class="paddle" x="5" y="180" width="10" height="100" fill="#c49a6c" />
+                    <!-- Center the ball -->
+                    <circle id="ball" cx="400" cy="240" r="8" fill="#f9ed32" />
+                </svg>
+                <div id="pauseOverlay" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.7); color: white; padding: 20px; text-align: center; border-radius: 10px; z-index: 100;">
+                    <h2 id="gamePaused" data-i18n="game_paused">Game Paused</h2>
+                    <p id="pauseMessage" data-i18n="press_resume">Press Space to resume</p>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4 gy-md-0 mt-3">
+            <div class="col">
+                <div class="pt-4 text-center">
+                    <span class="text-center text-info-emphasis" id="keysLocal" data-i18n="keys_local">Player Left: W(up)/S(down) | Player Right: ↑/↓ | Space: Pause/Resume</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

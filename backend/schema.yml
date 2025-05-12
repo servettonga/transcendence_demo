@@ -1,0 +1,1540 @@
+openapi: 3.0.3
+info:
+  title: ft_transcendence API
+  version: 1.0.0
+  description: Pong Tournament API
+paths:
+  /api/chat/blocks/:
+    get:
+      operationId: chat_blocks_list
+      description: List or create blocked users
+      tags:
+      - chat
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlockedUser'
+          description: ''
+    post:
+      operationId: chat_blocks_create
+      description: List or create blocked users
+      tags:
+      - chat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlockedUserRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlockedUserRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BlockedUserRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockedUser'
+          description: ''
+  /api/chat/blocks/@{username}/:
+    delete:
+      operationId: chat_blocks_@_destroy
+      description: Unblock a user
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - chat
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '204':
+          description: No response body
+  /api/chat/messages/direct/:
+    get:
+      operationId: chat_messages_direct_list
+      description: List or create chat messages
+      tags:
+      - chat
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChatMessage'
+          description: ''
+    post:
+      operationId: chat_messages_direct_create
+      description: List or create chat messages
+      tags:
+      - chat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatMessageRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChatMessageRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChatMessageRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatMessage'
+          description: ''
+  /api/chat/messages/direct/@{username}/:
+    get:
+      operationId: chat_messages_direct_@_list
+      description: List chat messages with specific user
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+        required: true
+      tags:
+      - chat
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChatMessageDetail'
+          description: ''
+  /api/chat/messages/public/:
+    get:
+      operationId: chat_messages_public_list
+      description: List public chat messages
+      tags:
+      - chat
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChatMessage'
+          description: ''
+  /api/logout:
+    post:
+      operationId: logout_create
+      tags:
+      - authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logout'
+          description: ''
+  /api/pong/:
+    get:
+      operationId: pong_list
+      description: List all active games
+      tags:
+      - pong
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PongGame'
+          description: ''
+  /api/pong/game/{game_id}/:
+    get:
+      operationId: pong_game_retrieve
+      description: Get game details
+      parameters:
+      - in: path
+        name: game_id
+        schema:
+          type: string
+          pattern: ^[^/]+$
+        required: true
+      tags:
+      - pong
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PongGame'
+          description: ''
+  /api/pong/game/{game_id}/history/:
+    get:
+      operationId: pong_game_history_retrieve
+      description: Get specific game history
+      parameters:
+      - in: path
+        name: game_id
+        schema:
+          type: string
+          pattern: ^[^/]+$
+        required: true
+      tags:
+      - pong
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PongGameHistory'
+          description: ''
+  /api/pong/game/{game_id}/join/:
+    post:
+      operationId: pong_game_join_create
+      description: Join an existing game
+      parameters:
+      - in: path
+        name: game_id
+        schema:
+          type: string
+          pattern: ^[^/]+$
+        required: true
+      tags:
+      - pong
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PongGameRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PongGameRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PongGameRequest'
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PongGame'
+          description: ''
+  /api/pong/game/{game_id}/state/:
+    get:
+      operationId: pong_game_state_retrieve
+      description: Get current game state
+      parameters:
+      - in: path
+        name: game_id
+        schema:
+          type: string
+          pattern: ^[^/]+$
+        required: true
+      tags:
+      - pong
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameState'
+          description: ''
+  /api/pong/game/create/:
+    post:
+      operationId: pong_game_create_create
+      description: Create a new game
+      tags:
+      - pong
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameCreate'
+          description: ''
+  /api/pong/game/my/:
+    get:
+      operationId: pong_game_my_list
+      description: List all games where the authenticated user is player1 or player2
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - pong
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPongGameList'
+          description: ''
+  /api/pong/history/:
+    get:
+      operationId: pong_history_list
+      description: List all games history
+      tags:
+      - pong
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PongGameHistory'
+          description: ''
+  /api/token/:
+    post:
+      operationId: token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPairRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPairRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPairRequest'
+        required: true
+      security:
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /api/token/refresh/:
+    post:
+      operationId: token_refresh_create
+      description: Refresh endpoint to get new access token
+      tags:
+      - authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+        required: true
+      security:
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/users/2fa/enable/:
+    post:
+      operationId: users_2fa_enable_create
+      description: "\n    Enable 2FA for the authenticated user.\n    \n    Returns\
+        \ a QR code that can be scanned with authenticator apps like Google Authenticator\
+        \ or Authy.\n    The QR code is returned as a base64 encoded PNG image.\n\
+        \    \n    This endpoint must be called before verifying 2FA setup.\n    Required\
+        \ for admin users.\n    "
+      tags:
+      - authentication
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+              examples:
+                Success:
+                  value:
+                    qr_code: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...
+                    secret: otpauth://totp/Transcendence%3Auser123?secret=...
+          description: ''
+        '400':
+          description: 2FA already enabled or other error
+  /api/users/2fa/validate/:
+    post:
+      operationId: users_2fa_validate_create
+      description: "\n    Validate 2FA code during login.\n    \n    Used as the second\
+        \ step of 2FA login process:\n    1. Get temporary token from /api/token/\n\
+        \    2. Use this endpoint to validate 2FA code and get final tokens\n    \n\
+        \    Required for:\n    - Admin users\n    - Users with 2FA enabled\n    "
+      tags:
+      - authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Validate2FARequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Validate2FARequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Validate2FARequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      - {}
+      responses:
+        '200':
+          description: 2FA validated, tokens returned
+        '400':
+          description: Invalid code or user not found
+        '403':
+          description: 2FA not enabled for user
+  /api/users/2fa/verify/:
+    post:
+      operationId: users_2fa_verify_create
+      description: "\n    Verify 2FA setup by providing a code from the authenticator\
+        \ app.\n    \n    Must be called after enabling 2FA and scanning the QR code.\n\
+        \    The code should be a 6-digit number from the authenticator app.\n   \
+        \ \n    After successful verification, 2FA will be enabled for the user.\n\
+        \    "
+      tags:
+      - authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Verify2FARequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Verify2FARequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Verify2FARequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          description: 2FA verified and enabled successfully
+        '400':
+          description: Invalid code or 2FA device not found
+  /api/users/@{username}/:
+    get:
+      operationId: users_@_retrieve
+      description: Get user's public information
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+          pattern: ^[^/]+$
+        required: true
+      tags:
+      - users
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicUserProfile'
+          description: ''
+  /api/users/@{username}/stats/:
+    get:
+      operationId: users_@_stats_retrieve
+      description: Get user stats
+      parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+          pattern: ^[^/]+$
+        required: true
+      tags:
+      - users
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStats'
+          description: ''
+  /api/users/me/:
+    get:
+      operationId: users_me_retrieve
+      description: Get/update user profile
+      tags:
+      - users
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+              examples:
+                UserProfileExample:
+                  value:
+                    id: 1
+                    username: example_user
+                    display_name: Example User
+                    avatar: /media/avatars/example.jpg
+                    status: online
+                    email: user@example.com
+                    settings:
+                      color_theme: 0
+                  summary: User Profile Example
+          description: ''
+    put:
+      operationId: users_me_update
+      description: Get/update user profile
+      tags:
+      - users
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserProfileRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserProfileRequest'
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+              examples:
+                UserProfileExample:
+                  value:
+                    id: 1
+                    username: example_user
+                    display_name: Example User
+                    avatar: /media/avatars/example.jpg
+                    status: online
+                    email: user@example.com
+                    settings:
+                      color_theme: 0
+                  summary: User Profile Example
+          description: ''
+    patch:
+      operationId: users_me_partial_update
+      description: Get/update user profile
+      tags:
+      - users
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileRequest'
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+              examples:
+                UserProfileExample:
+                  value:
+                    id: 1
+                    username: example_user
+                    display_name: Example User
+                    avatar: /media/avatars/example.jpg
+                    status: online
+                    email: user@example.com
+                    settings:
+                      color_theme: 0
+                  summary: User Profile Example
+          description: ''
+  /api/users/me/friend-requests/:
+    get:
+      operationId: users_me_friend_requests_list
+      description: Handle friend requests
+      tags:
+      - friends
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FriendRequest'
+          description: ''
+    post:
+      operationId: users_me_friend_requests_create
+      description: Handle friend requests
+      tags:
+      - friends
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FriendRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FriendRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FriendRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendRequest'
+          description: ''
+  /api/users/me/friends/:
+    get:
+      operationId: users_me_friends_list
+      description: List/add friends
+      tags:
+      - friends
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FriendList'
+          description: ''
+    post:
+      operationId: users_me_friends_create
+      description: List/add friends
+      tags:
+      - friends
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendList'
+          description: ''
+  /api/users/me/stats/:
+    get:
+      operationId: users_me_stats_retrieve
+      description: Get user stats
+      tags:
+      - users
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStats'
+          description: ''
+  /api/users/register:
+    post:
+      operationId: users_register_create
+      description: Register new user
+      tags:
+      - authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCreate'
+          description: ''
+components:
+  schemas:
+    BlockedUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        blocked_user:
+          type: integer
+        blocked_username:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - blocked_user
+      - blocked_username
+      - created_at
+      - id
+    BlockedUserRequest:
+      type: object
+      properties:
+        blocked_user:
+          type: integer
+        blocked_user_id:
+          type: integer
+          writeOnly: true
+      required:
+      - blocked_user
+      - blocked_user_id
+    ChatMessage:
+      type: object
+      description: Main serializer for creating/listing messages
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        sender:
+          allOf:
+          - $ref: '#/components/schemas/PublicUserProfile'
+          readOnly: true
+        recipient:
+          allOf:
+          - $ref: '#/components/schemas/PublicUserProfile'
+          readOnly: true
+        content:
+          type: string
+        message_type:
+          allOf:
+          - $ref: '#/components/schemas/MessageTypeEnum'
+          default: TEXT
+        game_id:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - content
+      - created_at
+      - id
+      - recipient
+      - sender
+    ChatMessageDetail:
+      type: object
+      description: Serializer for chat message history between two users
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        message_type:
+          $ref: '#/components/schemas/MessageTypeEnum'
+        game_id:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - content
+      - created_at
+      - id
+    ChatMessageRequest:
+      type: object
+      description: Main serializer for creating/listing messages
+      properties:
+        recipient_username:
+          type: string
+          writeOnly: true
+          minLength: 1
+        content:
+          type: string
+          minLength: 1
+        message_type:
+          allOf:
+          - $ref: '#/components/schemas/MessageTypeEnum'
+          default: TEXT
+        game_id:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+      required:
+      - content
+    FriendList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/UserStatusEnum'
+          readOnly: true
+        avatar:
+          type: string
+          format: uri
+          readOnly: true
+          nullable: true
+      required:
+      - avatar
+      - id
+      - status
+      - username
+    FriendRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        from_user:
+          allOf:
+          - $ref: '#/components/schemas/UserProfile'
+          readOnly: true
+        to_user:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - from_user
+      - id
+      - to_user
+    FriendRequestRequest:
+      type: object
+      properties:
+        to_user:
+          type: integer
+      required:
+      - to_user
+    GameCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          allOf:
+          - $ref: '#/components/schemas/GameStatusEnum'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - status
+    GameState:
+      type: object
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/GameStatusEnum'
+          readOnly: true
+        score1:
+          type: integer
+          readOnly: true
+        score2:
+          type: integer
+          readOnly: true
+        ball_pos_x:
+          type: number
+          format: double
+          readOnly: true
+        ball_pos_y:
+          type: number
+          format: double
+          readOnly: true
+        left_paddle_pos:
+          type: integer
+          readOnly: true
+        right_paddle_pos:
+          type: integer
+          readOnly: true
+      required:
+      - ball_pos_x
+      - ball_pos_y
+      - left_paddle_pos
+      - right_paddle_pos
+      - score1
+      - score2
+      - status
+    GameStatusEnum:
+      enum:
+      - WAITING
+      - PLAYING
+      - PAUSED
+      - SUSPENDED
+      - FINISHED
+      - FORFEITED
+      type: string
+      description: |-
+        * `WAITING` - Waiting for players
+        * `PLAYING` - Game in progress
+        * `PAUSED` - Game temporarily paused
+        * `SUSPENDED` - Game suspended
+        * `FINISHED` - Game completed
+        * `FORFEITED` - Game forfeited
+    Logout:
+      type: object
+      properties:
+        refresh:
+          type: string
+    LogoutRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+          minLength: 1
+    MessageTypeEnum:
+      enum:
+      - TEXT
+      - PUBLIC
+      - GAME_INVITE
+      - TOURNAMENT
+      type: string
+      description: |-
+        * `TEXT` - Private Message
+        * `PUBLIC` - Public Message
+        * `GAME_INVITE` - Game Invitation
+        * `TOURNAMENT` - Tournament Notification
+    PaginatedPongGameList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/PongGame'
+    PatchedUserProfileRequest:
+      type: object
+      description: Serializer for user's own profile with additional private fields
+      properties:
+        display_name:
+          type: string
+          nullable: true
+          maxLength: 50
+        avatar:
+          type: string
+          format: binary
+          nullable: true
+        status:
+          $ref: '#/components/schemas/UserStatusEnum'
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        settings: {}
+    PlayerStatusEnum:
+      enum:
+      - DISCONNECTED
+      - CONNECTED
+      - READY
+      - PLAYING
+      type: string
+      description: |-
+        * `DISCONNECTED` - Player is disconnected
+        * `CONNECTED` - Player is connected but not ready
+        * `READY` - Player is ready to start
+        * `PLAYING` - Player is playing
+    PongGame:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/GameStatusEnum'
+        player1_name:
+          type: string
+          readOnly: true
+        player2_name:
+          type: string
+          readOnly: true
+        player1_avatar:
+          type: string
+          readOnly: true
+        player2_avatar:
+          type: string
+          readOnly: true
+        player1_status:
+          allOf:
+          - $ref: '#/components/schemas/PlayerStatusEnum'
+          readOnly: true
+        player2_status:
+          allOf:
+          - $ref: '#/components/schemas/PlayerStatusEnum'
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        started_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        finished_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - created_at
+      - finished_at
+      - id
+      - player1_avatar
+      - player1_name
+      - player1_status
+      - player2_avatar
+      - player2_name
+      - player2_status
+      - started_at
+    PongGameHistory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        game:
+          type: integer
+          readOnly: true
+        player1_username:
+          type: string
+          readOnly: true
+        player2_username:
+          type: string
+          readOnly: true
+        score_player1:
+          type: integer
+          readOnly: true
+        score_player2:
+          type: integer
+          readOnly: true
+        winner_username:
+          type: string
+          readOnly: true
+        duration:
+          type: string
+          readOnly: true
+          nullable: true
+      required:
+      - duration
+      - game
+      - id
+      - player1_username
+      - player2_username
+      - score_player1
+      - score_player2
+      - winner_username
+    PongGameRequest:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/GameStatusEnum'
+    PublicUserProfile:
+      type: object
+      description: Serializer for viewing other users' profiles
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+        display_name:
+          type: string
+          readOnly: true
+          nullable: true
+        avatar:
+          type: string
+          nullable: true
+          readOnly: true
+        status:
+          allOf:
+          - $ref: '#/components/schemas/UserStatusEnum'
+          readOnly: true
+      required:
+      - avatar
+      - display_name
+      - id
+      - status
+      - username
+    Success:
+      type: object
+      properties:
+        qr_code:
+          type: string
+        secret:
+          type: string
+          default: otpauth://totp/Transcendence%3Auser
+      required:
+      - qr_code
+    TokenObtainPair:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - refresh
+    TokenObtainPairRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+          minLength: 1
+        password:
+          type: string
+          writeOnly: true
+          minLength: 1
+      required:
+      - password
+      - username
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    TokenRefreshRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+          minLength: 1
+      required:
+      - refresh
+    UserCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+      required:
+      - id
+      - username
+    UserCreateRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 1
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          minLength: 1
+          maxLength: 128
+      required:
+      - password
+      - username
+    UserProfile:
+      type: object
+      description: Serializer for user's own profile with additional private fields
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+        display_name:
+          type: string
+          nullable: true
+          maxLength: 50
+        avatar:
+          type: string
+          format: uri
+          nullable: true
+        status:
+          $ref: '#/components/schemas/UserStatusEnum'
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        settings: {}
+      required:
+      - id
+      - username
+    UserProfileRequest:
+      type: object
+      description: Serializer for user's own profile with additional private fields
+      properties:
+        display_name:
+          type: string
+          nullable: true
+          maxLength: 50
+        avatar:
+          type: string
+          format: binary
+          nullable: true
+        status:
+          $ref: '#/components/schemas/UserStatusEnum'
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        settings: {}
+    UserStats:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+        games_played:
+          type: integer
+          readOnly: true
+        games_won:
+          type: integer
+          readOnly: true
+        games_lost:
+          type: integer
+          readOnly: true
+        win_ratio:
+          type: number
+          format: double
+          readOnly: true
+      required:
+      - games_lost
+      - games_played
+      - games_won
+      - user_id
+      - username
+      - win_ratio
+    UserStatusEnum:
+      enum:
+      - online
+      - offline
+      - in_game
+      - away
+      type: string
+      description: |-
+        * `online` - Online
+        * `offline` - Offline
+        * `in_game` - In Game
+        * `away` - Away
+    Validate2FARequest:
+      type: object
+      description: Serializer for validating 2FA during login
+      properties:
+        username:
+          type: string
+          minLength: 1
+        code:
+          type: string
+          minLength: 1
+      required:
+      - code
+      - username
+    Verify2FARequest:
+      type: object
+      description: Serializer for verifying 2FA setup
+      properties:
+        code:
+          type: string
+          minLength: 1
+      required:
+      - code
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+tags:
+- name: authentication
+  description: Authentication endpoints
+- name: users
+  description: User management
+- name: pong
+  description: Pong game endpoints
+- name: friends
+  description: Friend system

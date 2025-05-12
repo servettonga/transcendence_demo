@@ -1,0 +1,100 @@
+<section class="py-5 mt-5 pt-0 pb-0">
+    <div class="container py-4 py-xl-5">
+        <section class="position-relative py-4 py-xl-5">
+            <div class="container-fluid d-inline-flex float-start d-xxl-flex m-auto position-relative">
+                <!-- Left Column -->
+                <div class="col-6 pe-3">
+                    <!-- Combined Stats Card with Win/Loss Chart -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h4 class="text-center mb-3" data-i18n="win_loss_ratio">Win/Loss Ratio</h4>
+                                    <canvas id="winLossChart" height="200"></canvas>
+                                </div>
+                                <div class="col-md-7">
+                                    <div id="userStats">
+                                        <h4 class="text-center mb-3" data-i18n="statistics">Statistics</h4>
+                                        <table class="table table-sm table-borderless">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col" data-i18n="games_played">Played</th>
+                                                <th scope="col" data-i18n="games_won">Won</th>
+                                                <th scope="col" data-i18n="games_lost">Lost</th>
+                                                <th scope="col" data-i18n="win_ratio">Ratio</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td id="gamesPlayed">0</td>
+                                                <td id="gamesWon">0</td>
+                                                <td id="gamesLost">0</td>
+                                                <td id="winRatio">0</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Score Distribution Chart Card -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="text-center mb-3" data-i18n="score_distribution_chart">Score Distribution</h4>
+                            <canvas id="scoreDistributionChart" height="250"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- My Games Card -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="text-center" data-i18n="my_games_title">
+                                My Games
+                                <button onclick="fetchMyGames('myGamesTable')" class="btn btn-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+                                        <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+                                    </svg>
+                                </button>
+                            </h4>
+                            <div id="myGamesTable" class="mt-3 table-responsive">
+                                <!-- Games list will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-6 ps-3">
+                    <!-- Opponents Chart Card -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="text-center mb-3" data-i18n="performance_against_opponents">Performance Against Top Opponents</h4>
+                            <canvas id="opponentsChart" height="250"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Game Duration Chart Card -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="text-center mb-3" data-i18n="game_duration_chart">Game Duration Distribution</h4>
+                            <canvas id="durationChart" height="250"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Match History Card -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="text-center mb-3" data-i18n="match_history">Match History</h4>
+                            <div id="scoreboard-container" class="table-responsive scrollable-table-container">
+                                <!-- Match history will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

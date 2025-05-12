@@ -1,0 +1,102 @@
+<section class="py-5 mt-5">
+    <div class="container py-4 py-xl-5 mt-0">
+        <div class="bootstrap_chat">
+            <div class="container py-12 px-12">
+                <header class="text-center">
+                    <h1 class="display-6 fw-bold mb-4" data-i18n="live_chat_title">Live Chat</h1>
+                </header>
+                <div class="row rounded-lg overflow-hidden shadow">
+                    <!-- Side Panel -->
+                    <div class="col-3 px-0">
+                        <div class="bg-white h-100">
+                            <div class="bg-light bg-gray px-4 py-2">
+                                <p class="h5 mb-0" data-i18n="chat_recent">Recent</p>
+                            </div>
+                            <div class="messages-box">
+                                <div class="list-group rounded-0" id="usersList">
+                                    <a class="list-group-item list-group-item-action active bg-primary text-white rounded-0" data-chat-id="mainChat">
+                                        <div class="user-list-item">
+                                            <img src="assets/img/avatars/group-chat.png" alt="Main Chat" class="user-list-avatar">
+                                            <div class="user-list-info">
+                                                <div class="user-list-name" data-i18n="main_chat_name">Main Chat</div>
+                                                <p class="user-list-message" data-i18n="public_chat_room">Public chat room</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!-- Users will be populated here dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Area -->
+                    <div class="col-9 px-0">
+                        <div class="bg-white chat-container">
+                            <div class="px-4 py-4 chat-box" id="chatBox">
+                                <!-- Messages will be populated here dynamically -->
+                            </div>
+                            <!-- Message Input Form -->
+                            <form class="bg-light" id="messageForm">
+                                <div class="input-group">
+                                    <input class="bg-light border-0 form-control form-control rounded-0"
+                                           type="text"
+                                           id="messageInput"
+                                           data-i18n-attr="placeholder:message_input_placeholder"
+                                           placeholder="Type a message">
+                                    <div class="input-group-text input-group-append ms-0 ps-0 pe-0 pb-0 pt-0">
+                                        <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="notification-container" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+        <!-- Notifications will be inserted here dynamically -->
+    </div>
+</section>
+
+<!-- User Actions Modal -->
+<div class="modal fade" id="chatUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" data-i18n="user_actions">User Actions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-3">
+                    <img id="modalUserAvatar" src="" alt="User Avatar" class="rounded-circle avatar-lg">
+                    <h4 id="modalUserName" class="mt-2 mb-0"></h4>
+                    <p id="modalUserUsername" class="text-muted small mb-2">@username</p>
+                    <span id="modalUserStatus" class="badge bg-success" data-i18n="online_status">Online</span>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 text-center mb-2">
+                    <div style="max-width: 200px; margin: 0 auto;" id="chatUserStatsContainer">
+                        <!-- Stats visualization will be generated here dynamically -->
+                        <div class="text-center py-2" data-i18n="loading_stats">Loading stats...</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-sm btn-outline-primary me-2" id="modalMessageBtn">
+                    <i class="fas fa-comment"></i> <span data-i18n="message_button">Message</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-success me-2" id="modalAddFriendBtn">
+                    <i class="fas fa-user-plus"></i> <span data-i18n="add_friend_button">Add Friend</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-info me-2" id="modalInviteGameBtn">
+                    <i class="fas fa-gamepad"></i> <span data-i18n="invite_game_button">Invite to Game</span>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger" id="modalBlockBtn">
+                    <i class="fas fa-ban"></i> <span data-i18n="block_user_button">Block User</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
